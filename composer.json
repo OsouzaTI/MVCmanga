@@ -1,0 +1,23 @@
+{
+    "name": "gdz/manga",
+    "description": "Site de leitura para mangás",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "osouza"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"App\\",
+            "Core\\": "Core\\"
+        },
+        "files": [
+            "Config/config.php"
+        ]
+    }
+}
