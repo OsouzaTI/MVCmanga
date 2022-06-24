@@ -7,7 +7,9 @@ tailwind.config = {
             'purple01': '#371B58',
             'purple02': '#4C3575',
             'purple03': '#5B4B8A',
-            'purple04': '#7858A6'
+            'purple04': '#7858A6',
+            'dark-purple': '#231739',
+            'light-purple': '#A6A9C8'
         }
         },
     },

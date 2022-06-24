@@ -7,7 +7,7 @@ use Exception;
 
 class Router {
 
-    private $controller = 'Home';
+    private $controller = 'HomeController';
     private $method = 'index';
     private $params = [];
 
@@ -21,7 +21,7 @@ class Router {
             unset($router[0]);   
         }
 
-        $class = "\\App\\Controllers\\$controller";
+        $class = "\\App\\Controllers\\$this->controller";
         $object = new $class;
 
         if(isset($router[1]) && method_exists($class, $router[1])) {
