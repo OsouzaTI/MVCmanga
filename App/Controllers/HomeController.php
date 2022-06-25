@@ -10,8 +10,18 @@ class HomeController extends Controller {
 
     public function index() {
         
-        $mangas = MangaHelper::getAllMangas();        
-        $this->view('Home/index', ['mangas' => $mangas]);
+        $mangas = MangaHelper::getAllMangas();    
+        $mostMangaAccess = MangaHelper::getAllMostAccessMangas();
+        $chapters = [
+            ...MangaHelper::getAllChapters('one-piece'),
+            ...MangaHelper::getAllChapters('sunken-rock'),
+        ];
+
+        $this->view('Home/index', [
+            'mangas' => $mangas,
+            'mostMangaAccess' => $mostMangaAccess,
+            'chapters' => $chapters
+        ]);
 
     }
 

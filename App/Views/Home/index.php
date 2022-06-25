@@ -1,27 +1,23 @@
 <div class="m-auto sm:w-11/12 md:w-4/6 relative bg-purple02 py-4 -top-[12rem] rounded-md shadow-md">
 
     <?= $this->component->render('sectionSeparator', '<i class="fa-solid fa-book"></i> Últimos lançamentos') ?>
-    <section class="slider flex whitespace-nowrap gap-x-4">
+    <section class="slider whitespace-nowrap">
         <?php foreach($data['mangas'] as $manga): ?>
             <?= $this->component->render('mangaCard', ['manga' => $manga]) ?>
         <?php endforeach; ?>
     </section>
 
     <?= $this->component->render('sectionSeparator', '<i class="fa-solid fa-angles-up"></i> Mais Acessados') ?>
-    <section class="flex slider-animated whitespace-nowrap gap-x-4">
-        <?php foreach($data['mangas'] as $manga): ?>
+    <section class="slider-animated whitespace-nowrap">
+        <?php foreach($data['mostMangaAccess'] as $manga): ?>
             <?= $this->component->render('mangaCard', ['manga' => $manga]) ?>
         <?php endforeach; ?>
     </section>
 
     <?= $this->component->render('sectionSeparator', '<i class="fa-solid fa-book-open"></i> Ultimos Capítulos adicionados') ?>
     <section class="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 px-2">
-        <?php foreach($data['mangas'] as $manga): ?>
-            <?= $this->component->render('mangaCard', ['manga' => $manga]) ?>
-        <?php endforeach; ?>
-        
-        <?php foreach($data['mangas'] as $manga): ?>
-            <?= $this->component->render('mangaCard', ['manga' => $manga]) ?>
+        <?php foreach($data['chapters'] as $chapter): ?>
+            <?= $this->component->render('chapterCard', ['chapter' => $chapter]) ?>
         <?php endforeach; ?>
     </section>
 </div>

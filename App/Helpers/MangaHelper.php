@@ -8,6 +8,7 @@ use Core\Debug;
 
 class MangaHelper {
     
+    static private $mostAcessMangasPath = 'App/Assets/mangas-acessados';
     static private $mangasPath = 'App/Assets/mangas';
 
     static function scanDirectory($dirName) {
@@ -23,15 +24,33 @@ class MangaHelper {
             $chaptersPath = MangaHelper::$mangasPath. '/' . $manga;                
             $chapters = MangaHelper::scanDirectory($chaptersPath);
             $mangaTitle = implode(' ', explode('-', $manga));
-            foreach ($chapters as $chapter)
-            {
-                $chapterPath = "$chaptersPath/$chapter";
-                $pages = MangaHelper::scanDirectory($chapterPath);
-                $finalMangaTitle = ucwords($mangaTitle) .' - '. "[$chapter]";
-                $mangaEntity = new MangaEntity($finalMangaTitle, $manga, count($pages), "$chapterPath/{$pages[0]}");
-                // Debug::debug($manga);
-                array_push($mangas, $mangaEntity);
-            }
+            
+            // pegando thumbnail
+            $chapterPath = "$chaptersPath/{$chapters[0]}";
+            $pages = MangaHelper::scanDirectory($chapterPath);
+
+            $mangaEntity = new MangaEntity($mangaTitle, $manga, count($pages), "$chapterPath/{$pages[0]}");
+            array_push($mangas, $mangaEntity);
+        }
+        return $mangas;
+    }
+
+    static public function getAllMostAccessMangas() {
+        $mangas = [];
+        $mangasPath = MangaHelper::scanDirectory(MangaHelper::$mostAcessMangasPath);
+        foreach ($mangasPath as $manga)
+        {               
+            $chaptersPath = MangaHelper::$mangasPath. '/' . $manga;                
+            $chapters = MangaHelper::scanDirectory($chaptersPath);
+            $mangaTitle = implode(' ', explode('-', $manga));
+
+            // pegando thumbnail
+            $chapterPath = "$chaptersPath/{$chapters[0]}";
+            $pages = MangaHelper::scanDirectory($chapterPath);
+            
+            // entidade manga
+            $mangaEntity = new MangaEntity($mangaTitle, $manga, count($chapters), "$chapterPath/{$pages[0]}");
+            array_push($mangas, $mangaEntity);
         }
         return $mangas;
     }
@@ -45,7 +64,7 @@ class MangaHelper {
             $thumbnail = MangaHelper::scanDirectory($chapterPath);
             if(count($thumbnail) > 0)
                 $thumbnail = implode('/', ["/$chapterPath", $thumbnail[0]]) ;
-            $chapterEntity = new ChapterEntity($chapter, implode('/', [$mangaTitle, $chapter]), $thumbnail??'');
+            $chapterEntity = new ChapterEntity("$mangaTitle($chapter)", implode('/', [$mangaTitle, $chapter]), $thumbnail??'');
             array_push($chapters, $chapterEntity);
         }
         return $chapters;
