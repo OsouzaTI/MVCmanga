@@ -4,14 +4,26 @@ namespace App\Models;
 
 class ChapterEntity {
     
-    private $pages;
+    private $title;
+    private $url;
+    private $thumbnail;
 
-    public function __construct($pages = []) {
-        $this->pages = $pages;
+    public function __construct($title = '', $url = '', $thumbnail = '') {
+        $this->title = $title;
+        $this->url = $url;
+        $this->thumbnail = $thumbnail;
     }
     
-    public function getPages() {
-        return $this->pages;
+    public function getTitle(){
+        return $this->title;
+    }    
+
+    public function getUrl() {
+        return $this->url;
+    }
+
+    public function getThumbnail() {
+        return $this->thumbnail;
     }
 
 }

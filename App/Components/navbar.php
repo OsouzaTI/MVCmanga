@@ -14,7 +14,7 @@
         <img class="h-16" src="https://marcas-logos.net/wp-content/uploads/2020/03/Pornhub-Logo.png"/>
     </div>
     <div class="flex gap-x-4 items-center justify-center w-1/2 h-full">
-        <div class="text-white"><a href="#" class="text-xl">Inicio</a></div>
+        <div class="text-white"><a href="/" class="text-xl">Inicio</a></div>
         <div class="text-white"><a href="#" class="text-xl">Mangás</a></div>
         <div class="text-white"><a href="#" class="text-xl">Categorias</a></div>
         <div class="text-white"><a href="#" class="text-xl">Sobre</a></div>
@@ -30,8 +30,8 @@
 <script>
     let prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
-    let currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
+      let currentScrollPos = window.pageYOffset;
+      if ((prevScrollpos > currentScrollPos) && currentScrollPos < 100) {
         document.getElementById("navbar").style.top = "0";
       } else {
         document.getElementById("navbar").style.top = "-6rem";

@@ -6,9 +6,11 @@ class MangaEntity {
     private $title;
     private $nPages;
     private $thumbnail;
+    private $url;
     
-    public function __construct($title = '', $nPages = 0, $thumbnail = '') {
+    public function __construct($title = '', $url = '', $nPages = 0, $thumbnail = '') {
         $this->title = $title;
+        $this->url = $url;
         $this->nPages = $nPages;
         $this->thumbnail = $thumbnail;
     }
@@ -19,6 +21,10 @@ class MangaEntity {
 
     public function getTitle(){
         return $this->title;
+    }
+
+    public function getUrl() {
+        return $this->url;
     }
 
     public function getNPages() {
